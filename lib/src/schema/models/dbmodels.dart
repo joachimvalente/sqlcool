@@ -125,18 +125,23 @@ class DbModel {
 
   /// Select rows in the database table
   Future<List<dynamic>> sqlSelect(
-      {String where,
+      {List<String> exclude,
+      List<String> include,
+      String where,
       String orderBy,
       int limit,
       int offset,
       String groupBy,
       bool verbose = false}) async {
+        assert(exclude == null || include == null)
     _checkDbIsReady();
     // do not take the foreign keys
     final cols = <String>["id"];
     for (final col in table.columns) {
       if (!col.isForeignKey) {
-        cols.add(col.name);
+        if ((include != null && include.contains(col.name)) ||
+            (exclude != null && !exclude.contains(col.name)) ||
+          cols.add(col.name);
       }
     }
     final columns = cols.join(",");
