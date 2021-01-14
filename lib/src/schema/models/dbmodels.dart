@@ -133,14 +133,14 @@ class DbModel {
       int offset,
       String groupBy,
       bool verbose = false}) async {
-        assert(exclude == null || include == null)
+        assert(exclude == null || include == null);
     _checkDbIsReady();
     // do not take the foreign keys
     final cols = <String>["id"];
     for (final col in table.columns) {
       if (!col.isForeignKey) {
         if ((include != null && include.contains(col.name)) ||
-            (exclude != null && !exclude.contains(col.name)) ||
+            (exclude != null && !exclude.contains(col.name)))
           cols.add(col.name);
       }
     }

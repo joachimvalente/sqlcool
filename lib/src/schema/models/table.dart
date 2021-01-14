@@ -149,7 +149,7 @@ class DbTable {
       q += " NOT NULL";
     }
     if (defaultValue != null) {
-      q += " DEFAULT $defaultValue";
+      q += " DEFAULT '$defaultValue'";
     }
     if (check != null) {
       q += " CHECK($check)";
@@ -178,7 +178,7 @@ class DbTable {
       q += " NOT NULL";
     }
     if (defaultValue != null) {
-      q += " DEFAULT $defaultValue";
+      q += " DEFAULT '$defaultValue'";
     }
     if (check != null) {
       q += " CHECK($check)";
