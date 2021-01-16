@@ -133,7 +133,7 @@ class DbModel {
       int offset,
       String groupBy,
       bool verbose = false}) async {
-        assert(exclude == null || include == null);
+    assert(exclude == null || include == null);
     _checkDbIsReady();
     // do not take the foreign keys
     final cols = <String>["id"];
@@ -199,7 +199,7 @@ class DbModel {
     final id = await db
         .insert(table: table.name, row: row, verbose: verbose)
         .catchError((dynamic e) =>
-            throw WriteQueryException("Can not insert model into database $e"));
+            throw Exception("Can not insert model into database ${e.message}"));
     return id;
   }
 
